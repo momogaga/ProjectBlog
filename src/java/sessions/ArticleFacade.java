@@ -6,8 +6,12 @@
 package sessions;
 
 import entities.Article;
+import entities.Comment;
 import entities.Status;
+import entities.Users;
+import java.util.Date;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
@@ -21,7 +25,7 @@ import javax.persistence.Query;
 @Stateless
 @LocalBean
 public class ArticleFacade {
-
+    
     @PersistenceContext(unitName = "ProjectBlogPU")
     private EntityManager em;
 
@@ -29,16 +33,24 @@ public class ArticleFacade {
         em.persist(object);
     }
 
-    public void creerArticle(String titre) {
-        Article a = new Article(titre);
+    public Article creerArticle(String titre, String keyword, String content, Date today, double posLat, double posLong, String position, Users redacteur) {
+        Article a = new Article();
+        a.setTitle(titre);
+        a.setKeywords(keyword);
+        a.setPublished_on(today);
+        a.setContent(content);
+        a.setPosition_latitude(posLat);
+        a.setPosition_longitude(posLong);
+        a.setPosition_name(position);
         a.setStatus(Status.PUBLISHED);
-
+        a.setA_ecrit(redacteur);
         persist(a);
+        
+        return a;
     }
 
     public void creerArticleTest() {
-        creerArticle("MoMo");
-        creerArticle("GaGa");
+       
     }
 
     public List<Article> getAllArticle() {

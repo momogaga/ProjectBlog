@@ -34,8 +34,8 @@ public class Article implements Serializable {
     private Date published_on;
     private String content;
     private URL photo;
-    private long position_longitude;
-    private long position_latitude;
+    private double position_longitude;
+    private double position_latitude;
     private String position_name;
     
     private Status status;
@@ -47,10 +47,6 @@ public class Article implements Serializable {
     private Users a_ecrit;
 
     public Article() {
-    }
-
-    public Article(String title){
-        this.title = title;
     }
         
     public Long getId() {
@@ -101,19 +97,19 @@ public class Article implements Serializable {
         this.photo = photo;
     }
 
-    public long getPosition_longitude() {
+    public double getPosition_longitude() {
         return position_longitude;
     }
 
-    public void setPosition_longitude(long position_longitude) {
+    public void setPosition_longitude(double position_longitude) {
         this.position_longitude = position_longitude;
     }
 
-    public long getPosition_latitude() {
+    public double getPosition_latitude() {
         return position_latitude;
     }
 
-    public void setPosition_latitude(long position_latitude) {
+    public void setPosition_latitude(double position_latitude) {
         this.position_latitude = position_latitude;
     }
 

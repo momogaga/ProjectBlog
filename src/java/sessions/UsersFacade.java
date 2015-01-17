@@ -5,7 +5,9 @@
  */
 package sessions;
 
+import entities.UserStatus;
 import entities.Users;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -28,15 +30,24 @@ public class UsersFacade {
         em.persist(object);
     }
 
-    public void creerUtilisateur(String login, String pass) {
+    public Users creerUtilisateur(String login, String pass, String prenom, String nom, Date today, String description) {
         Users u = new Users();
-
+        u.setUsername(login);
+        u.setPassword(pass);
+        u.setFirstname(prenom);
+        u.setLastname(nom);
+        u.setLast_connect(today);
+        u.setAbout(description);
+        u.setUser_status(UserStatus.ENABLED);        
         persist(u);
+        
+        return u;
     }
 
-    public void creerUtilisateurTest() {
-        creerUtilisateur("admin", "admin");
-    }
+    /*public void creerUtilisateurTest() {
+        creerUtilisateur("admin", "admin", "momo", "gaga", new Date(), "A changer");
+        creerUtilisateur("user", "user", "bastien", "maria", new Date(), "A decouvrir");
+    }*/
 
     public List<Users> getAllUsers() {
         Query q = em.createQuery("SELECT u FROM User u");

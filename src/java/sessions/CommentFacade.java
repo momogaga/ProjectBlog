@@ -5,7 +5,10 @@
  */
 package sessions;
 
+import entities.Article;
 import entities.Comment;
+import entities.Users;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -28,15 +31,24 @@ public class CommentFacade {
         em.persist(object);
     }
 
-    public void creerCommentaire(String commentaire) {
+    public Comment creerCommentaire(String commentaire, Users commentateur, Article articlePublie) {
         Comment c = new Comment();
-
+        c.setComment(commentaire);
+        c.setCommented_date(new Date());
+        c.setArticle_commente(articlePublie);
+        c.setA_commente(commentateur);
+        
         persist(c);
+        
+        return c;
     }
 
-    public void creerCommentaireTest() {
-        creerCommentaire("Test");
-    }
+    /*public void creerCommentaireTest() {
+        creerCommentaire("Test", new Date());
+        creerCommentaire("Test", new Date());
+        creerCommentaire("Test", new Date());
+        creerCommentaire("Test", new Date());        
+    }*/
 
     public List<Comment> getAllComment() {
         Query q = em.createQuery("SELECT c FROM Comment c");

@@ -5,6 +5,10 @@
  */
 package utils;
 
+import entities.Article;
+import entities.Comment;
+import entities.Users;
+import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
@@ -25,19 +29,31 @@ import sessions.UsersFacade;
 public class InitBD {
 
     @EJB
-    ArticleFacade af;
+    UsersFacade uf;
+
     @EJB
     CommentFacade cf;
+
+    @EJB
+    ArticleFacade af;
+
     @EJB
     FonctionFacade rf;
-    @EJB
-    UsersFacade uf;
 
     @PostConstruct // Appel après constructeur
     public void initialize() {
         System.out.println("BD initialisee");
-        af.creerArticleTest();
-        cf.creerCommentaireTest();
-        uf.creerUtilisateurTest();
+
+        Users momo = uf.creerUtilisateur("admin", "admin", "momo", "gaga", new Date(), "A changer");
+        Users bastien = uf.creerUtilisateur("user", "user", "bastien", "maria", new Date(), "A decouvrir");
+
+        Article a1 = af.creerArticle("Title", "Key", "Nouveaute du jour", new Date(), 45.777168, 3.082417, "Nice", momo);
+        Article a2 = af.creerArticle("Blog", "Pizza", "Blalalalaa", new Date(), 45.777168, 3.082417, "Nice", momo);
+        Article a3 = af.creerArticle("Coupe", "Retour", "Bon bon bon", new Date(), 45.777168, 3.082417, "Nice", bastien);
+        Article a4 = af.creerArticle("Fete", "Tag", "Bablablablablabla", new Date(), 45.777168, 3.082417, "Nice", bastien);
+
+        Comment c1 = cf.creerCommentaire("Coucou", momo, a1);
+        Comment c2 = cf.creerCommentaire("Yo", bastien, a2);
+
     }
 }
