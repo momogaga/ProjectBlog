@@ -52,8 +52,8 @@ public class InitBD {
         Article a3 = af.creerArticle("Coupe", "Retour", "Bon bon bon", new Date(), 45.777168, 3.082417, "Nice", bastien);
         Article a4 = af.creerArticle("Fete", "Tag", "Bablablablablabla", new Date(), 45.777168, 3.082417, "Nice", bastien);
 
-        Comment c1 = cf.creerCommentaire("Coucou", momo, a1);
-        Comment c2 = cf.creerCommentaire("Yo", bastien, a2);
+       // Comment c1 = cf.creerCommentaire("Coucou", momo, a1);
+       // Comment c2 = cf.creerCommentaire("Yo", bastien, a2);
 
     }
 }
