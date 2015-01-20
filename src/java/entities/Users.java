@@ -9,10 +9,12 @@ import java.io.Serializable;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
@@ -36,10 +38,12 @@ public class Users implements Serializable {
     private Date last_connect;
     private UserStatus user_status;
     
-    @OneToMany(mappedBy = "a_ecrit")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "a_ecrit")
     private List<Article> articles;
-    @OneToMany(mappedBy = "a_commente")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "a_commente")
     private List<Comment> comments;
+    @ManyToOne
+    private Role a_role;
     
     public Users() {
     }
@@ -130,6 +134,14 @@ public class Users implements Serializable {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public Role getA_role() {
+        return a_role;
+    }
+
+    public void setA_role(Role a_role) {
+        this.a_role = a_role;
     }
     
     @Override

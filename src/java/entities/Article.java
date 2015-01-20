@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -40,7 +41,7 @@ public class Article implements Serializable {
     
     private Status status;
     
-    @OneToMany(mappedBy = "article_commente")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "article_commente")
     private List<Comment> comments;
     
     @ManyToOne

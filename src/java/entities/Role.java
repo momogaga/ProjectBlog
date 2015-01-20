@@ -6,17 +6,20 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author MoMo
  */
 @Entity
-public class Fonction implements Serializable {
+public class Role implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,7 +27,10 @@ public class Fonction implements Serializable {
     private String name;
     private String description;
 
-    public Fonction() {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "a_role")
+    private List<Users> users;
+    
+    public Role() {
     }
 
     public Long getId() {
@@ -51,6 +57,14 @@ public class Fonction implements Serializable {
         this.description = description;
     }
 
+    public List<Users> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<Users> users) {
+        this.users = users;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -61,10 +75,10 @@ public class Fonction implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Fonction)) {
+        if (!(object instanceof Role)) {
             return false;
         }
-        Fonction other = (Fonction) object;
+        Role other = (Role) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

@@ -16,7 +16,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Startup;
 import sessions.ArticleFacade;
 import sessions.CommentFacade;
-import sessions.FonctionFacade;
+import sessions.RoleFacade;
 import sessions.UsersFacade;
 
 /**
@@ -38,14 +38,17 @@ public class InitBD {
     ArticleFacade af;
 
     @EJB
-    FonctionFacade rf;
+    RoleFacade rf;
 
     @PostConstruct // Appel après constructeur
     public void initialize() {
         System.out.println("BD initialisee");
+        
+        // Role r1 = rf.creerRole("Admin");
+       // Role r2 = rf.creerCommentaire("User");
 
-        Users momo = uf.creerUtilisateur("admin", "admin", "momo", "gaga", new Date(), "A changer");
-        Users bastien = uf.creerUtilisateur("user", "user", "bastien", "maria", new Date(), "A decouvrir");
+        Users momo = uf.creerUtilisateur("admin", "admin", "momo", "gaga", new Date(), "New");
+        Users bastien = uf.creerUtilisateur("user", "user", "bastien", "maria", new Date(), "Disc");
 
         Article a1 = af.creerArticle("Title", "Key", "Nouveaute du jour", new Date(), 45.777168, 3.082417, "Nice", momo);
         Article a2 = af.creerArticle("Blog", "Pizza", "Blalalalaa", new Date(), 45.777168, 3.082417, "Nice", momo);

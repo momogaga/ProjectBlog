@@ -43,13 +43,6 @@ public class CommentFacade {
         return c;
     }
 
-    /*public void creerCommentaireTest() {
-        creerCommentaire("Test", new Date());
-        creerCommentaire("Test", new Date());
-        creerCommentaire("Test", new Date());
-        creerCommentaire("Test", new Date());        
-    }*/
-
     public List<Comment> getAllComment() {
         Query q = em.createQuery("SELECT c FROM Comment c");
         return q.getResultList();

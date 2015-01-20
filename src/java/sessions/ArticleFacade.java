@@ -6,12 +6,10 @@
 package sessions;
 
 import entities.Article;
-import entities.Comment;
 import entities.Status;
 import entities.Users;
 import java.util.Date;
 import java.util.List;
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;

@@ -5,7 +5,7 @@
  */
 package services;
 
-import entities.Fonction;
+import entities.Role;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -25,25 +25,25 @@ import javax.ws.rs.Produces;
  */
 @Stateless
 @Path("fonction")
-public class FonctionFacadeREST extends AbstractFacade<Fonction> {
+public class RoleFacadeREST extends AbstractFacade<Role> {
     @PersistenceContext(unitName = "ProjectBlogPU")
     private EntityManager em;
 
-    public FonctionFacadeREST() {
-        super(Fonction.class);
+    public RoleFacadeREST() {
+        super(Role.class);
     }
 
     @POST
     @Override
     @Consumes({"application/xml", "application/json"})
-    public void create(Fonction entity) {
+    public void create(Role entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({"application/xml", "application/json"})
-    public void edit(@PathParam("id") Long id, Fonction entity) {
+    public void edit(@PathParam("id") Long id, Role entity) {
         super.edit(entity);
     }
 
@@ -56,21 +56,21 @@ public class FonctionFacadeREST extends AbstractFacade<Fonction> {
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public Fonction find(@PathParam("id") Long id) {
+    public Role find(@PathParam("id") Long id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({"application/xml", "application/json"})
-    public List<Fonction> findAll() {
+    public List<Role> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({"application/xml", "application/json"})
-    public List<Fonction> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Role> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 

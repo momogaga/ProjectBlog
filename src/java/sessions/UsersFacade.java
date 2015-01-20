@@ -38,7 +38,8 @@ public class UsersFacade {
         u.setLastname(nom);
         u.setLast_connect(today);
         u.setAbout(description);
-        u.setUser_status(UserStatus.ENABLED);        
+        u.setUser_status(UserStatus.ENABLED);
+        
         persist(u);
         
         return u;

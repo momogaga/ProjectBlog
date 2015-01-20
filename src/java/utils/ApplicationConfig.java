@@ -41,7 +41,7 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(services.ArticleFacadeREST.class);
         resources.add(services.CommentFacadeREST.class);
-        resources.add(services.FonctionFacadeREST.class);
+        resources.add(services.RoleFacadeREST.class);
         resources.add(services.UsersFacadeREST.class);
         resources.add(utils.CrossOriginResourceSharingFilter.class);
     }

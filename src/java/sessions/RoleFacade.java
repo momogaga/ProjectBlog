@@ -5,27 +5,37 @@
  */
 package sessions;
 
-import entities.Fonction;
+import entities.Role;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
  * @author MoMo
  */
 @Stateless
-public class FonctionFacade extends AbstractFacade<Fonction> {
+public class RoleFacade {
     @PersistenceContext(unitName = "ProjectBlogPU")
     private EntityManager em;
 
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
+    public void persist(Object object) {
+        em.persist(object);
+    }
+    
+    public Role creerRole(String name) {
+        Role r = new Role();
+        r.setName(name);
+        persist(r);
+        
+        return r;
     }
 
-    public FonctionFacade() {
-        super(Fonction.class);
+    public List<Role> getAllComment() {
+        Query q = em.createQuery("SELECT r FROM Role r");
+        return q.getResultList();
     }
     
 }
