@@ -41,7 +41,7 @@ public class Article implements Serializable {
     
     private Status status;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "article_commente")
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Comment> comments;
     
     @ManyToOne

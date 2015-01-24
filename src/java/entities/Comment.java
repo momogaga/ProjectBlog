@@ -30,9 +30,6 @@ public class Comment implements Serializable {
     private Date commented_date;
     
     @ManyToOne
-    private Article article_commente;
-    
-    @ManyToOne
     private Users a_commente;
 
     public Comment() {
@@ -60,14 +57,6 @@ public class Comment implements Serializable {
 
     public void setCommented_date(Date commented_date) {
         this.commented_date = commented_date;
-    }
-
-    public Article getArticle_commente() {
-        return article_commente;
-    }
-
-    public void setArticle_commente(Article article_commente) {
-        this.article_commente = article_commente;
     }
 
     public Users getA_commente() {
