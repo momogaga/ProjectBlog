@@ -8,7 +8,10 @@ package utils;
 import entities.Article;
 import entities.Comment;
 import entities.Users;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
@@ -43,10 +46,9 @@ public class InitBD {
     @PostConstruct // Appel après constructeur
     public void initialize() {
         System.out.println("BD initialisee");
-        
-        // Role r1 = rf.creerRole("Admin");
-       // Role r2 = rf.creerCommentaire("User");
 
+        // Role r1 = rf.creerRole("Admin");
+        // Role r2 = rf.creerCommentaire("User");
         Users momo = uf.creerUtilisateur("admin", "admin", "momo", "gaga", new Date(), "New");
         Users bastien = uf.creerUtilisateur("user", "user", "bastien", "maria", new Date(), "Disc");
 
@@ -55,8 +57,15 @@ public class InitBD {
         Article a3 = af.creerArticle("Coupe", "Retour", "Bon bon bon", new Date(), 45.777168, 3.082417, "Nice", bastien);
         Article a4 = af.creerArticle("Fete", "Tag", "Bablablablablabla", new Date(), 45.777168, 3.082417, "Nice", bastien);
 
-       // Comment c1 = cf.creerCommentaire("Coucou", momo, a1);
-       // Comment c2 = cf.creerCommentaire("Yo", bastien, a2);
+        Comment c1 = cf.creerCommentaire("Coucou", momo);
+        Comment c2 = cf.creerCommentaire("Yo", bastien);
+       
+        List<Comment> comments;
+        comments = new ArrayList<>();
+        comments.add(c1);
+        comments.add(c2);
+
+        a1.setComments(comments);
 
     }
 }

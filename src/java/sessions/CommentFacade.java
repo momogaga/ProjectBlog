@@ -31,11 +31,10 @@ public class CommentFacade {
         em.persist(object);
     }
 
-    public Comment creerCommentaire(String commentaire, Users commentateur, Article articlePublie) {
+    public Comment creerCommentaire(String commentaire, Users commentateur) {
         Comment c = new Comment();
         c.setComment(commentaire);
         c.setCommented_date(new Date());
-        c.setArticle_commente(articlePublie);
         c.setA_commente(commentateur);
         
         persist(c);
