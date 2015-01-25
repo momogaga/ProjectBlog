@@ -6,7 +6,6 @@
 package entities;
 
 import java.io.Serializable;
-import java.net.URL;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -14,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -24,32 +24,35 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class Article implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     private String title;
     private String keywords;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date published_on;
     private String content;
-    private URL photo;
+
+    @Lob
+    private String photo;
     private double position_longitude;
     private double position_latitude;
     private String position_name;
-    
+
     private Status status;
-    
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<Comment> comments;
-    
+
     @ManyToOne
     private Users a_ecrit;
 
     public Article() {
     }
-        
+
     public Long getId() {
         return id;
     }
@@ -90,11 +93,11 @@ public class Article implements Serializable {
         this.content = content;
     }
 
-    public URL getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(URL photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 
@@ -170,5 +173,5 @@ public class Article implements Serializable {
     public String toString() {
         return "entities.Article[ id=" + id + " ]";
     }
-    
+
 }
