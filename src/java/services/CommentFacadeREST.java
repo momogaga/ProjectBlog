@@ -10,6 +10,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -79,6 +80,15 @@ public class CommentFacadeREST extends AbstractFacade<Comment> {
     @Produces("text/plain")
     public String countREST() {
         return String.valueOf(super.count());
+    }
+    
+    @GET
+    @Path("search/{id}")
+    @Produces({"application/json"})
+    public List<Comment> findCommentByArticle(@PathParam("id") long id) {      
+        Query q = em.createNamedQuery("findCommentByArticle");
+        q.setParameter("article", id);
+        return q.getResultList();
     }
 
     @Override

@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 
 /**
@@ -19,6 +20,10 @@ import javax.persistence.Temporal;
  * @author MoMo
  */
 @Entity
+@NamedQuery(
+    name="findCommentByArticle",
+    query="SELECT c FROM Comment c WHERE c.a_article.id = :article"
+)
 public class Comment implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -31,6 +36,9 @@ public class Comment implements Serializable {
     
     @ManyToOne
     private Users a_commente;
+    
+    @ManyToOne 
+    private Article a_article;
 
     public Comment() {
     }   
@@ -65,6 +73,14 @@ public class Comment implements Serializable {
 
     public void setA_commente(Users a_commente) {
         this.a_commente = a_commente;
+    }
+
+    public Article getA_article() {
+        return a_article;
+    }
+
+    public void setA_article(Article a_article) {
+        this.a_article = a_article;
     }
     
     @Override

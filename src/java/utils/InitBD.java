@@ -59,13 +59,18 @@ public class InitBD {
 
         Comment c1 = cf.creerCommentaire("Coucou", momo);
         Comment c2 = cf.creerCommentaire("Yo", bastien);
-       
-        List<Comment> comments;
-        comments = new ArrayList<>();
-        comments.add(c1);
-        comments.add(c2);
+        Comment c3 = cf.creerCommentaire("Re", momo);
 
-        a1.setComments(comments);
+        c1.setA_article(a1);
+        c2.setA_article(a4);
+        c3.setA_article(a4);
+
+        //List<Comment> comments;
+        //comments = new ArrayList<>();
+        //comments.add(c1);
+        //comments.add(c2);
+
+        //a4.setComments(comments);
 
     }
 }
