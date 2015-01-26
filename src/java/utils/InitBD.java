@@ -52,10 +52,10 @@ public class InitBD {
         Users momo = uf.creerUtilisateur("admin", "admin", "momo", "gaga", new Date(), "New");
         Users bastien = uf.creerUtilisateur("user", "user", "bastien", "maria", new Date(), "Disc");
 
-        Article a1 = af.creerArticle("Title", "Key", "Nouveaute du jour", new Date(), 45.777168, 3.082417, "Nice", momo);
-        Article a2 = af.creerArticle("Blog", "Pizza", "Blalalalaa", new Date(), 45.777168, 3.082417, "Nice", momo);
-        Article a3 = af.creerArticle("Coupe", "Retour", "Bon bon bon", new Date(), 45.777168, 3.082417, "Nice", bastien);
-        Article a4 = af.creerArticle("Fete", "Tag", "Bablablablablabla", new Date(), 45.777168, 3.082417, "Nice", bastien);
+        Article a1 = af.creerArticle("Title 1", "Key", "Cyprum itidem insulam procul a continenti discretam et portuosam inter municipia crebra urbes duae faciunt claram Salamis et Paphus, altera Iovis delubris altera Veneris templo insignis.", new Date(), 45.777168, 3.082417, "Nice", momo);
+        Article a2 = af.creerArticle("Title 2", "Tag", "Nemo quaeso miretur, si post exsudatos labores itinerum longos congestosque adfatim commeatus fiducia vestri ductante barbaricos pagos adventans velut mutato repente consilio ad placidiora deverti.", new Date(), 45.777168, 3.082417, "Nice", momo);
+        Article a3 = af.creerArticle("Article 1", "Img", "Primi igitur omnium statuuntur Epigonus et Eusebius ob nominum gentilitatem oppressi. praediximus enim Montium sub ipso vivendi termino his vocabulis appellatos fabricarum culpasse tribunos ut adminicula futurae molitioni pollicitos.", new Date(), 45.777168, 3.082417, "Nice", bastien);
+        Article a4 = af.creerArticle("Article 2", "Vac", "Sed si ille hac tam eximia fortuna propter utilitatem rei publicae frui non properat, ut omnia illa conficiat, quid ego, senator, facere debeo, quem, etiamsi ille aliud vellet, rei publicae consulere oporteret?", new Date(), 45.777168, 3.082417, "Nice", bastien);
 
         Comment c1 = cf.creerCommentaire("Coucou", momo);
         Comment c2 = cf.creerCommentaire("Yo", bastien);
@@ -64,13 +64,5 @@ public class InitBD {
         c1.setA_article(a1);
         c2.setA_article(a4);
         c3.setA_article(a4);
-
-        //List<Comment> comments;
-        //comments = new ArrayList<>();
-        //comments.add(c1);
-        //comments.add(c2);
-
-        //a4.setComments(comments);
-
     }
 }

@@ -6,10 +6,12 @@
 package services;
 
 import entities.Article;
+import entities.Status;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -26,6 +28,7 @@ import javax.ws.rs.Produces;
 @Stateless
 @Path("article")
 public class ArticleFacadeREST extends AbstractFacade<Article> {
+
     @PersistenceContext(unitName = "ProjectBlogPU")
     private EntityManager em;
 
@@ -81,9 +84,30 @@ public class ArticleFacadeREST extends AbstractFacade<Article> {
         return String.valueOf(super.count());
     }
 
+    @GET
+    @Path("status/{type}")
+    @Produces({"application/json"})
+    public List<Article> findArticleByStatus(@PathParam("type") long type) {
+        Status etat = Status.WAITFORVALIDATION;
+
+        if (type == 0) {
+            etat = Status.PUBLISHED;
+        }
+        if (type == 1) {
+            etat = Status.REPORTASABUSED;
+        }
+        if (type == 2) {
+            etat = Status.WAITFORVALIDATION;
+        }
+
+        Query q = em.createNamedQuery("findArticleByStatus");
+        q.setParameter("status", etat);
+        return q.getResultList();
+    }
+
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
 }

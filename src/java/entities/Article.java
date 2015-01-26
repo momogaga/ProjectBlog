@@ -10,11 +10,14 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
@@ -23,6 +26,10 @@ import javax.persistence.Temporal;
  * @author MoMo
  */
 @Entity
+@NamedQuery(
+    name="findArticleByStatus",
+    query="SELECT a FROM Article a WHERE a.status = :status"
+)
 public class Article implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,6 +49,7 @@ public class Article implements Serializable {
     private double position_latitude;
     private String position_name;
 
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @OneToMany(mappedBy="a_article", cascade = CascadeType.ALL)
