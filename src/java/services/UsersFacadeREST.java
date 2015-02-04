@@ -10,8 +10,10 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -26,11 +28,31 @@ import javax.ws.rs.Produces;
 @Stateless
 @Path("users")
 public class UsersFacadeREST extends AbstractFacade<Users> {
+
     @PersistenceContext(unitName = "ProjectBlogPU")
     private EntityManager em;
 
     public UsersFacadeREST() {
         super(Users.class);
+    }
+
+    //post sur user / mdp
+    @POST
+    @Path("/check")
+    @Produces({"application/json"})
+    public Object checkUserPassword(@FormParam("username") String username, @FormParam("mdp") String mdp) {
+
+        System.out.println("username :  " + username);
+
+        Query q = em.createNamedQuery("findUserByUsernameAndPassword");
+        q.setParameter("username", username);
+        q.setParameter("password", mdp);
+
+        if (q.getResultList().isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     @POST
@@ -85,5 +107,5 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
 }

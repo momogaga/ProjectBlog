@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
@@ -23,7 +24,12 @@ import javax.persistence.Temporal;
  * @author MoMo
  */
 @Entity
+@NamedQuery(
+        name = "findUserByUsernameAndPassword",
+        query = "SELECT u FROM Users u WHERE u.username = :username AND u.password = :password"
+)
 public class Users implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,17 +43,17 @@ public class Users implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date last_connect;
     private UserStatus user_status;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "a_ecrit")
     private List<Article> articles;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "a_commente")
     private List<Comment> comments;
     @ManyToOne
     private Role a_role;
-    
+
     public Users() {
     }
-      
+
     public Long getId() {
         return id;
     }
@@ -143,7 +149,7 @@ public class Users implements Serializable {
     public void setA_role(Role a_role) {
         this.a_role = a_role;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -168,5 +174,5 @@ public class Users implements Serializable {
     public String toString() {
         return "entities.User[ id=" + id + " ]";
     }
-    
+
 }
