@@ -6,6 +6,7 @@
 package services;
 
 import entities.Users;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -51,7 +52,9 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
         if (q.getResultList().isEmpty()) {
             return false;
         } else {
-            return true;
+            Users u = (Users) q.getSingleResult();
+            u.setLast_connect(new Date());
+            return u;
         }
     }
 
