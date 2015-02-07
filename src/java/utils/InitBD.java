@@ -7,11 +7,9 @@ package utils;
 
 import entities.Article;
 import entities.Comment;
+import entities.Role;
 import entities.Users;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
@@ -47,10 +45,12 @@ public class InitBD {
     public void initialize() {
         System.out.println("BD initialisee");
 
-        // Role r1 = rf.creerRole("Admin");
-        // Role r2 = rf.creerCommentaire("User");
-        Users momo = uf.creerUtilisateur("admin", "admin", "momo", "gaga", new Date(), "New");
-        Users bastien = uf.creerUtilisateur("user", "user", "bastien", "maria", new Date(), "Disc");
+        Users momo = uf.creerUtilisateur("admin", "admin", "momo", "gaga", new Date(), "About");
+        Users bastien = uf.creerUtilisateur("user", "user", "bastien", "maria", new Date(), "About");
+        Role r1 = rf.creerRole("Admin");
+        Role r2 = rf.creerRole("User");
+        momo.setA_role(r2);
+        bastien.setA_role(r1);
 
         Article a1 = af.creerArticle("Title 1", "Key", "Cyprum itidem insulam procul a continenti discretam et portuosam inter municipia crebra urbes duae faciunt claram Salamis et Paphus, altera Iovis delubris altera Veneris templo insignis.", new Date(), 45.777168, 3.082417, "Nice", momo);
         Article a2 = af.creerArticle("Title 2", "Tag", "Nemo quaeso miretur, si post exsudatos labores itinerum longos congestosque adfatim commeatus fiducia vestri ductante barbaricos pagos adventans velut mutato repente consilio ad placidiora deverti.", new Date(), 45.777168, 3.082417, "Nice", momo);
