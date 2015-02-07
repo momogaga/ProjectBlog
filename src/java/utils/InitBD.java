@@ -49,8 +49,8 @@ public class InitBD {
         Users bastien = uf.creerUtilisateur("user", "user", "bastien", "maria", new Date(), "About");
         Role r1 = rf.creerRole("Admin");
         Role r2 = rf.creerRole("User");
-        momo.setA_role(r2);
-        bastien.setA_role(r1);
+        momo.setA_role(r1);
+        bastien.setA_role(r2);
 
         Article a1 = af.creerArticle("Title 1", "Key", "Cyprum itidem insulam procul a continenti discretam et portuosam inter municipia crebra urbes duae faciunt claram Salamis et Paphus, altera Iovis delubris altera Veneris templo insignis.", new Date(), 45.777168, 3.082417, "Nice", momo);
         Article a2 = af.creerArticle("Title 2", "Tag", "Nemo quaeso miretur, si post exsudatos labores itinerum longos congestosque adfatim commeatus fiducia vestri ductante barbaricos pagos adventans velut mutato repente consilio ad placidiora deverti.", new Date(), 45.777168, 3.082417, "Nice", momo);
