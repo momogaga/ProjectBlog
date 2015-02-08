@@ -53,10 +53,11 @@ public class InitBD {
         momo.setA_role(r1);
         bastien.setA_role(r2);
 
-        Article a1 = af.creerArticle("Title 1", "Key", "Cyprum itidem insulam procul a continenti discretam et portuosam inter municipia crebra urbes duae faciunt claram Salamis et Paphus, altera Iovis delubris altera Veneris templo insignis.", new Date(), 45.777168, 3.082417, "Nice", momo, Status.WAITFORVALIDATION);
+        Article a1 = af.creerArticle("Title 1", "Key", "Cyprum itidem insulam procul a continenti discretam et portuosam inter municipia crebra urbes duae faciunt claram Salamis et Paphus, altera Iovis delubris altera Veneris templo insignis.", new Date(), 11.07519, 3.68081, "Nice", momo, Status.WAITFORVALIDATION);
         Article a2 = af.creerArticle("Title 2", "Tag", "Nemo quaeso miretur, si post exsudatos labores itinerum longos congestosque adfatim commeatus fiducia vestri ductante barbaricos pagos adventans velut mutato repente consilio ad placidiora deverti.", new Date(), 45.777168, 3.082417, "Nice", momo, Status.WAITFORVALIDATION);
-        Article a3 = af.creerArticle("Article 1", "Img", "Primi igitur omnium statuuntur Epigonus et Eusebius ob nominum gentilitatem oppressi. praediximus enim Montium sub ipso vivendi termino his vocabulis appellatos fabricarum culpasse tribunos ut adminicula futurae molitioni pollicitos.", new Date(), 45.777168, 3.082417, "Nice", bastien, Status.PUBLISHED);
-        Article a4 = af.creerArticle("Article 2", "Vac", "Sed si ille hac tam eximia fortuna propter utilitatem rei publicae frui non properat, ut omnia illa conficiat, quid ego, senator, facere debeo, quem, etiamsi ille aliud vellet, rei publicae consulere oporteret?", new Date(), 45.777168, 3.082417, "Nice", bastien, Status.PUBLISHED);
+        Article a3 = af.creerArticle("Article 1", "Img", "Primi igitur omnium statuuntur Epigonus et Eusebius ob nominum gentilitatem oppressi. praediximus enim Montium sub ipso vivendi termino his vocabulis appellatos fabricarum culpasse tribunos ut adminicula futurae molitioni pollicitos.", new Date(), 59.12199, 100.36050, "Nice", bastien, Status.PUBLISHED);
+        Article a4 = af.creerArticle("Article 2", "Vac", "Sed si ille hac tam eximia fortuna propter utilitatem rei publicae frui non properat, ut omnia illa conficiat, quid ego, senator, facere debeo, quem, etiamsi ille aliud vellet, rei publicae consulere oporteret?", new Date(), 30.96278, 102.46987, "Nice", bastien, Status.PUBLISHED);
+        Article a5 = af.creerArticle("Article 3", "Vac", "blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla ", new Date(), 63.65808, 27.05972, "Nice", bastien, Status.PUBLISHED);
 
         Comment c1 = cf.creerCommentaire("Coucou", momo);
         Comment c2 = cf.creerCommentaire("Yo", bastien);
