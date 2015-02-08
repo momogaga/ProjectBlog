@@ -31,7 +31,7 @@ public class ArticleFacade {
         em.persist(object);
     }
 
-    public Article creerArticle(String titre, String keyword, String content, Date today, double posLat, double posLong, String position, Users redacteur) {
+    public Article creerArticle(String titre, String keyword, String content, Date today, double posLat, double posLong, String position, Users redacteur, Status status) {
         Article a = new Article();
         a.setTitle(titre);
         a.setKeywords(keyword);
@@ -40,7 +40,7 @@ public class ArticleFacade {
         a.setPosition_latitude(posLat);
         a.setPosition_longitude(posLong);
         a.setPosition_name(position);
-        a.setStatus(Status.PUBLISHED);
+        a.setStatus(status);
         a.setA_ecrit(redacteur);
         persist(a);
         
