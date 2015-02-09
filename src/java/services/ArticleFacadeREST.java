@@ -85,13 +85,11 @@ public class ArticleFacadeREST extends AbstractFacade<Article> {
     }
 
     @GET
-    @Path("countTag")
+    @Path("countArticleByTag")
     @Produces({"application/xml", "application/json"})
     public Object countTag() {
-
         Query q = em.createNamedQuery("countTag");
         return q.getResultList();
-
     }
 
     @GET
@@ -102,6 +100,17 @@ public class ArticleFacadeREST extends AbstractFacade<Article> {
         Query q = em.createNamedQuery("countArticleByCountry");
         return q.getResultList();
 
+    }
+    
+    @GET
+    @Path("user/{id}")
+    @Produces({"application/json"})
+    public List<Article> findArticleByUsers(@PathParam("id") Long id) {  
+        
+        Query q = em.createNamedQuery("findArticleByUsers");
+        q.setParameter("iduser", id);
+        q.setParameter("status", Status.WAITFORVALIDATION);
+        return q.getResultList();
     }
 
     @GET

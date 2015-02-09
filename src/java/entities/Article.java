@@ -39,6 +39,10 @@ import javax.persistence.Temporal;
     @NamedQuery(
             name = "countArticleByCountry",
             query = "SELECT a.position_name, COUNT(a) FROM Article a GROUP BY a.position_name"
+    ),
+    @NamedQuery(
+            name = "findArticleByUsers",
+            query = "SELECT a FROM Article a WHERE a.a_ecrit.id = :iduser AND a.status = :status"
     )
 })
 public class Article implements Serializable {
