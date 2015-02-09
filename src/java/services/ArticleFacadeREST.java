@@ -85,6 +85,17 @@ public class ArticleFacadeREST extends AbstractFacade<Article> {
     }
 
     @GET
+    @Path("countTag")
+    @Produces({"application/xml", "application/json"})
+    public Object countTag() {
+
+        Query q = em.createNamedQuery("countTag");
+        System.out.println("test" + q.getResultList());
+        return q.getResultList();
+
+    }
+
+    @GET
     @Path("status/{type}")
     @Produces({"application/json"})
     public List<Article> findArticleByStatus(@PathParam("type") long type) {

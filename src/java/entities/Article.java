@@ -17,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -26,10 +27,16 @@ import javax.persistence.Temporal;
  * @author MoMo
  */
 @Entity
-@NamedQuery(
-    name="findArticleByStatus",
-    query="SELECT a FROM Article a WHERE a.status = :status"
-)
+@NamedQueries({
+    @NamedQuery(
+            name = "findArticleByStatus",
+            query = "SELECT a FROM Article a WHERE a.status = :status"
+    ),
+    @NamedQuery(
+            name = "countTag",
+            query = "SELECT a.keywords, COUNT(a) FROM Article a GROUP BY a.keywords"
+    )
+})
 public class Article implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,7 +59,7 @@ public class Article implements Serializable {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @OneToMany(mappedBy="a_article", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "a_article", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
     @ManyToOne
