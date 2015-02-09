@@ -90,7 +90,16 @@ public class ArticleFacadeREST extends AbstractFacade<Article> {
     public Object countTag() {
 
         Query q = em.createNamedQuery("countTag");
-        System.out.println("test" + q.getResultList());
+        return q.getResultList();
+
+    }
+
+    @GET
+    @Path("countArticleByCountry")
+    @Produces({"application/xml", "application/json"})
+    public Object countArticleByCountry() {
+
+        Query q = em.createNamedQuery("countArticleByCountry");
         return q.getResultList();
 
     }
