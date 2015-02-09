@@ -35,6 +35,10 @@ import javax.persistence.Temporal;
     @NamedQuery(
             name = "countTag",
             query = "SELECT a.keywords, COUNT(a) FROM Article a GROUP BY a.keywords"
+    ),
+    @NamedQuery(
+            name = "countArticleByCountry",
+            query = "SELECT a.position_name, COUNT(a) FROM Article a GROUP BY a.position_name"
     )
 })
 public class Article implements Serializable {
